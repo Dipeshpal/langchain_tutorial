@@ -1,9 +1,12 @@
 # Using an LLM
-
 from langchain.llms import OpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from langchain.memory import ConversationBufferMemory
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 llm = OpenAI(temperature=0)
 # Notice that "chat_history" is present in the prompt template
@@ -25,5 +28,8 @@ conversation = LLMChain(
 )
 
 # Notice that we just pass in the `question` variables - `chat_history` gets populated by memory
-ans = conversation({"question": "hi"})
-print(ans)
+
+while True:
+    inp = input("Enter: ")
+    ans = conversation({"question": inp})
+    print(ans)

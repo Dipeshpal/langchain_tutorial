@@ -1,13 +1,16 @@
 from langchain.llms import OpenAI
 from langchain.chat_models import ChatOpenAI
+from dotenv import load_dotenv
 
-llm = OpenAI(openai_api_key="...")
+load_dotenv()
+
+llm = OpenAI()
 chat_model = ChatOpenAI()
 
 
 def llm_openai_model():
     c = 0
-    while c != 2:
+    while c != 4:
         inp = input("Say something: ")
         ans = llm.predict(inp)
         print(ans)
@@ -16,7 +19,7 @@ def llm_openai_model():
 
 def llm_openai_chat_model():
     c = 0
-    while c != 2:
+    while c != 4:
         inp = input("Say something: ")
         ans = chat_model.predict(inp)
         print(ans)
@@ -24,5 +27,7 @@ def llm_openai_chat_model():
 
 
 if __name__ == "__main__":
+    print("Using OpenAI Model...")
     llm_openai_model()
+    print("Using OpenAI Chat Model...")
     llm_openai_chat_model()

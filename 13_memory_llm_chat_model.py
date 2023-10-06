@@ -1,5 +1,4 @@
 # Using a ChatModel
-
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import (
     ChatPromptTemplate,
@@ -10,8 +9,12 @@ from langchain.prompts import (
 from langchain.chains import LLMChain
 from langchain.memory import ConversationBufferMemory
 
+from dotenv import load_dotenv
+
+load_dotenv()
 
 llm = ChatOpenAI()
+
 prompt = ChatPromptTemplate(
     messages=[
         SystemMessagePromptTemplate.from_template(
@@ -32,6 +35,8 @@ conversation = LLMChain(
     memory=memory
 )
 
-# Notice that we just pass in the `question` variables - `chat_history` gets populated by memory
-ans = conversation({"question": "hi"})
-print(ans)
+while True:
+    # Notice that we just pass in the `question` variables - `chat_history` gets populated by memory
+    inp = input("Enter: ")
+    ans = conversation({"question": inp})
+    print(ans)

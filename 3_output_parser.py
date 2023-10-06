@@ -9,5 +9,6 @@ class CommaSeparatedListOutputParser(BaseOutputParser):
         return text.strip().split(", ")
 
 
-CommaSeparatedListOutputParser().parse("hi, bye")
-# >> ['hi', 'bye']
+ans = CommaSeparatedListOutputParser().parse("hi, bye")
+print(ans)
+

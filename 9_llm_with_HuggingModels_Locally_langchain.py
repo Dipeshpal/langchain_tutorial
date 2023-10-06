@@ -7,7 +7,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline, AutoMode
 def load_text2text_model():
     model_id = 'google/flan-t5-small'
     tokenizer = AutoTokenizer.from_pretrained(model_id)
-    model = AutoModelForSeq2SeqLM.from_pretrained(model_id, load_in_8bit=True, device_map='auto')
+    model = AutoModelForSeq2SeqLM.from_pretrained(model_id, device_map='auto')
 
     pipe = pipeline(
         "text2text-generation",
@@ -37,8 +37,8 @@ def load_text_generation_model():
     return local_llm
 
 
-local_llm = load_text2text_model()  # text2text-generation
-# local_llm = load_text2text_model()  # text-generation
+# local_llm = load_text2text_model()  # text2text-generation
+local_llm = load_text_generation_model()  # text-generation
 
 # print(local_llm('What is the capital of England? '))  # or ---->
 
